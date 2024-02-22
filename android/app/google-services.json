@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1074657064584",
+    "project_id": "wayo-chat",
+    "storage_bucket": "wayo-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074657064584:android:49d734b6e722d9f841913d",
+        "android_client_info": {
+          "package_name": "com.example.wayo_chatapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBycNUpozwMjHjc6FJLY7c12QjTPb-3YGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
