@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'dart:html' as web;
+//import 'dart:html' as web;
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -36,7 +36,7 @@ Future<String> initFCM() async {
 }
 
 //////////////
-Future<void> showNotification(Map<String, dynamic>message) async {
+/*Future<void> showNotification(Map<String, dynamic>message) async {
   var permission = web.Notification.permission;
   if (permission != 'granted') {
     permission = await web.Notification.requestPermission();
@@ -54,4 +54,4 @@ Future<void> showNotification(Map<String, dynamic>message) async {
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 //  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   print("Handling a background message: ${message.messageId}");
-}
+}*/
