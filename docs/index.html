@@ -54,9 +54,14 @@
         }
       });
 
-      if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register("firebase-messaging-sw.js");
     });
   </script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("firebase-messaging-sw.js");
+      });
+    }
+  </script>  
 </body>
 </html>
