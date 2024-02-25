@@ -58,159 +58,22 @@ final childSelectionStreamProvider =
 
 typedef ChildSelectionStreamRef = AutoDisposeStreamProviderRef<List<Selection>>;
 String _$childLimiSelectionStreamHash() =>
-    r'f4fad73042b02e6b9d853f3a1bb9981332354ff9';
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
+    r'81da6ca308f7f842356bc97573043f35cf2b8a88';
 
 /// See also [childLimiSelectionStream].
 @ProviderFor(childLimiSelectionStream)
-const childLimiSelectionStreamProvider = ChildLimiSelectionStreamFamily();
+final childLimiSelectionStreamProvider =
+    AutoDisposeStreamProvider<List<Selection>>.internal(
+  childLimiSelectionStream,
+  name: r'childLimiSelectionStreamProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$childLimiSelectionStreamHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-/// See also [childLimiSelectionStream].
-class ChildLimiSelectionStreamFamily
-    extends Family<AsyncValue<List<Selection>>> {
-  /// See also [childLimiSelectionStream].
-  const ChildLimiSelectionStreamFamily();
-
-  /// See also [childLimiSelectionStream].
-  ChildLimiSelectionStreamProvider call(
-    String parentId,
-  ) {
-    return ChildLimiSelectionStreamProvider(
-      parentId,
-    );
-  }
-
-  @override
-  ChildLimiSelectionStreamProvider getProviderOverride(
-    covariant ChildLimiSelectionStreamProvider provider,
-  ) {
-    return call(
-      provider.parentId,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'childLimiSelectionStreamProvider';
-}
-
-/// See also [childLimiSelectionStream].
-class ChildLimiSelectionStreamProvider
-    extends AutoDisposeStreamProvider<List<Selection>> {
-  /// See also [childLimiSelectionStream].
-  ChildLimiSelectionStreamProvider(
-    String parentId,
-  ) : this._internal(
-          (ref) => childLimiSelectionStream(
-            ref as ChildLimiSelectionStreamRef,
-            parentId,
-          ),
-          from: childLimiSelectionStreamProvider,
-          name: r'childLimiSelectionStreamProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$childLimiSelectionStreamHash,
-          dependencies: ChildLimiSelectionStreamFamily._dependencies,
-          allTransitiveDependencies:
-              ChildLimiSelectionStreamFamily._allTransitiveDependencies,
-          parentId: parentId,
-        );
-
-  ChildLimiSelectionStreamProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.parentId,
-  }) : super.internal();
-
-  final String parentId;
-
-  @override
-  Override overrideWith(
-    Stream<List<Selection>> Function(ChildLimiSelectionStreamRef provider)
-        create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: ChildLimiSelectionStreamProvider._internal(
-        (ref) => create(ref as ChildLimiSelectionStreamRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        parentId: parentId,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeStreamProviderElement<List<Selection>> createElement() {
-    return _ChildLimiSelectionStreamProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is ChildLimiSelectionStreamProvider &&
-        other.parentId == parentId;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, parentId.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-mixin ChildLimiSelectionStreamRef
-    on AutoDisposeStreamProviderRef<List<Selection>> {
-  /// The parameter `parentId` of this provider.
-  String get parentId;
-}
-
-class _ChildLimiSelectionStreamProviderElement
-    extends AutoDisposeStreamProviderElement<List<Selection>>
-    with ChildLimiSelectionStreamRef {
-  _ChildLimiSelectionStreamProviderElement(super.provider);
-
-  @override
-  String get parentId => (origin as ChildLimiSelectionStreamProvider).parentId;
-}
+typedef ChildLimiSelectionStreamRef
+    = AutoDisposeStreamProviderRef<List<Selection>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

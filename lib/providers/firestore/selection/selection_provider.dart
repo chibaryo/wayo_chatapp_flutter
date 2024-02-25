@@ -61,18 +61,18 @@ Stream<List<Selection>> childSelectionStream(ChildSelectionStreamRef ref) {
 }
 
 @riverpod
-Stream<List<Selection>> childLimiSelectionStream(ChildLimiSelectionStreamRef ref, String parentId) {
+Stream<List<Selection>> childLimiSelectionStream(ChildLimiSelectionStreamRef ref) {
   final firestore = ref.watch(firebaseFirestoreProvider);
 
   return firestore
-    .collectionGroup('childselections')
-    .where("parentId", isEqualTo: parentId)
+    .collection('child_selections')
+    .where("parentId", isEqualTo: ref.watch(parentDocIdNotifierProvider))
     .orderBy('itemId', descending: false)
 //    .orderBy('createdAt', descending: true)
     .withConverter<Selection?>(fromFirestore:  (ds, _) {
       final data = ds.data();
       final id = ds.id;
-      ///print("ds.id: ${ds.id}");
+      print("ds.id: ${ds.id}");
 
       if (data == null) {
         return null;

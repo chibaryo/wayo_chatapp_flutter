@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:wayo_chatapp/firebase_options.dart';
+import 'package:wayo_chatapp/providers/fcm/token_provider.dart';
 import 'package:wayo_chatapp/router/router.dart';
 
 Future<void> main() async {
@@ -22,9 +24,6 @@ class MyApp extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffect(() {
-      if (kIsWeb) {
-        print(" !!! Now in kIsWeb!!! (Debug mode) ");
-      }
     }, const []);
 
     final router = ref.watch(routerProvider);

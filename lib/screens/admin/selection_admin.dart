@@ -25,10 +25,10 @@ class SelectionAdminScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final _selectionList = ref.watch(selectionStreamProvider);
+    final _midSelectionList = ref.watch(childLimiSelectionStreamProvider);
 
     useEffect(() {
 //      ref.read(parentDocIdNotifierProvider.notifier).state = "";
-
     }, const []);
 
     return Scaffold(
@@ -72,13 +72,14 @@ class SelectionAdminScreen extends HookConsumerWidget {
           ),
           Container(
             child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection("selections").snapshots(),
+              stream: FirebaseFirestore.instance
+                  .collection("selections")
+                  .snapshots(),
               builder: (context, snapshot) {
                 List<DropdownMenuItem> selItems = [];
                 if (!snapshot.hasData) {
                   return const CircularProgressIndicator();
-                }
-                else {
+                } else {
                   final sels = snapshot.data?.docs.reversed.toList();
                   // Add default
                   selItems.add(const DropdownMenuItem(
@@ -86,15 +87,13 @@ class SelectionAdminScreen extends HookConsumerWidget {
                     child: Text("Please select..."),
                   ));
 
-
                   for (var sel in sels!) {
-                    selItems.add(DropdownMenuItem(
-                      value: sel.id,
-                      child: Text(
-                        sel["text"]
+                    selItems.add(
+                      DropdownMenuItem(
+                        value: sel.id,
+                        child: Text(sel["text"]),
                       ),
-                    ),
-                  );
+                    );
                   }
                 }
                 return DropdownButtonHideUnderline(
@@ -103,7 +102,8 @@ class SelectionAdminScreen extends HookConsumerWidget {
                     items: selItems,
                     onChanged: (newValue) {
                       ref.read(midDocIdNotifierProvider.notifier).state = "0";
-                      ref.read(parentDocIdNotifierProvider.notifier).state = newValue;
+                      ref.read(parentDocIdNotifierProvider.notifier).state =
+                          newValue;
                     },
                     value: ref.watch(parentDocIdNotifierProvider),
                   ),
@@ -112,8 +112,12 @@ class SelectionAdminScreen extends HookConsumerWidget {
             ),
           ),
           Container(
-            child: ref.watch(parentDocIdNotifierProvider) != "0" ? StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection("child_selections").where("parentId", isEqualTo: ref.watch(parentDocIdNotifierProvider)).snapshots(),
+            child:               ref.watch(parentDocIdNotifierProvider) != "0" ? StreamBuilder<QuerySnapshot>(
+              stream: 
+              FirebaseFirestore.instance
+                .collection("child_selections")
+                .where("parentId", isEqualTo: ref.watch(parentDocIdNotifierProvider))
+                .snapshots(),
               builder: (context, snapshot) {
                 List<DropdownMenuItem> midselItems = []; // Prepare empty array
                 if (!snapshot.hasData) {
@@ -139,7 +143,6 @@ class SelectionAdminScreen extends HookConsumerWidget {
                   );
                   }
                 }
-//                return Text(midselItems.toString());
                 return DropdownButtonHideUnderline(
                   child: DropdownButton2(
                     isExpanded: true,
