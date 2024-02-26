@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1074657064584",
-    "project_id": "wayo-chat",
-    "storage_bucket": "wayo-chat.appspot.com"
+    "project_number": "1023542976787",
+    "project_id": "react-noti-app-5c9f4",
+    "storage_bucket": "react-noti-app-5c9f4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1074657064584:android:49d734b6e722d9f841913d",
+        "mobilesdk_app_id": "1:1023542976787:android:01cc456fe2f5f19502fae6",
         "android_client_info": {
           "package_name": "com.example.wayo_chatapp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBycNUpozwMjHjc6FJLY7c12QjTPb-3YGQ"
+          "current_key": "AIzaSyCxFxPA0xXwByZ0LCypXd2Q9zQ92Q4v51M"
         }
       ],
       "services": {

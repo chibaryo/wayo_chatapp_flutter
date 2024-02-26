@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:logger/logger.dart';
 import 'package:wayo_chatapp/platform/web/webroot.dart';
 import 'package:wayo_chatapp/providers/fcm/token_provider.dart';
+import 'package:wayo_chatapp/providers/isloading/isloading_provider.dart';
 
 final logger = Logger();
 
@@ -18,7 +20,8 @@ class RootScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    useEffect(() {}, const []);
+    useEffect(() {
+    }, const []);
 
     return Scaffold(
         appBar: AppBar(
@@ -33,13 +36,14 @@ class RootScreen extends HookConsumerWidget {
                 'Root!',
                 style: TextStyle(fontSize: 32.0),
               ),
-              ElevatedButton(
+/*              ElevatedButton(
                   onPressed: () {
                     context.push('/admin/selection');
                   },
-                  child: const Text("選択肢管理")),
+                  child: const Text("選択肢管理")), */
               ElevatedButton(
                   onPressed: () async {
+                    ref.read(isLoadingNotifierProvider.notifier).state = true;
                     final serverdate = DateTime.now(); //.toLocal().toIso8601String();
 
                     final fcmToken = await initFCM();
@@ -61,19 +65,44 @@ class RootScreen extends HookConsumerWidget {
                           "fcmToken": fcmToken,
                           "createdAt": serverdate,
                         });
+                      
+                      // Toast
+                      ref.read(isLoadingNotifierProvider.notifier).state = false;
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: const Text("fcmトークンが更新されました"),
+                          action: SnackBarAction(label: "閉じる", onPressed: () => ScaffoldMessenger.of(context).hideCurrentSnackBar()),
+                          backgroundColor: Colors.lightBlue.shade700,
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        ),
+                      );
 
                     } catch (err) {
                       print("error: $err");
                     }
                     // Listen (Foreground)
-                    FirebaseMessaging.onMessage
+/*                    FirebaseMessaging.onMessage
                         .listen((RemoteMessage message) async {
                       print("Got a message whilst in the foreground!");
                       print("message.data: ${message.data}");
                       inspect(message?.notification);
-                    });
+                    }); */
                   },
-                  child: const Text("通知許可")),
+                  child: const Text("通知許可")
+              ),
+              Visibility(
+                visible: ref.watch(isLoadingNotifierProvider),
+                child: Container(
+                  child: const Center(
+                    child: SizedBox(
+                      width: 150,
+                      height: 150,
+                      child: CircularProgressIndicator()
+                    ),
+                  )
+                )
+              ),
             ],
           ),
         ));

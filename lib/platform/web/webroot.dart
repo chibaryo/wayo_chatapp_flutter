@@ -24,7 +24,7 @@ Future<String> initFCM() async {
     print('User granted permission: ${settings.authorizationStatus}');
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       await messaging.deleteToken();
-      final fcmToken = await messaging.getToken(vapidKey: "BMbxodZhFyE6xSuPhjVNphISLPtHOOUh7xQpA2Q6JPT20jz9RRuPMFiIYMV5frLY3YmiLKq9WG2OnQaPX43N14U");
+      final fcmToken = await messaging.getToken(vapidKey: "BI_bXoUvYZK5Vea6jd4f11wzKXcczoAQtLqGKRqXohqoOvb-wc63BM9EyySS9ZM9oI7pxPY_Ec7Vyv8XjlH8SbA");
       print("FCM Token: $fcmToken");
 
       return fcmToken!;

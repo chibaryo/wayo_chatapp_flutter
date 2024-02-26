@@ -25,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -47,29 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDYuQ0JZccMGBM6xVorEEzxOjUoPF93LRo',
-    appId: '1:1074657064584:web:5d2ffec5a27a0dda41913d',
-    messagingSenderId: '1074657064584',
-    projectId: 'wayo-chat',
-    authDomain: 'wayo-chat.firebaseapp.com',
-    storageBucket: 'wayo-chat.appspot.com',
-    measurementId: 'G-PQRKGD2MHK',
+    apiKey: 'AIzaSyBSxg71d7IVb_U4QYIKCE-kccCVMUZEFow',
+    appId: '1:1023542976787:web:0985ab855d2986ae02fae6',
+    messagingSenderId: '1023542976787',
+    projectId: 'react-noti-app-5c9f4',
+    authDomain: 'react-noti-app-5c9f4.firebaseapp.com',
+    storageBucket: 'react-noti-app-5c9f4.appspot.com',
+    measurementId: 'G-P6ZG0Q4ZJS',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBycNUpozwMjHjc6FJLY7c12QjTPb-3YGQ',
-    appId: '1:1074657064584:android:49d734b6e722d9f841913d',
-    messagingSenderId: '1074657064584',
-    projectId: 'wayo-chat',
-    storageBucket: 'wayo-chat.appspot.com',
+    apiKey: 'AIzaSyCxFxPA0xXwByZ0LCypXd2Q9zQ92Q4v51M',
+    appId: '1:1023542976787:android:01cc456fe2f5f19502fae6',
+    messagingSenderId: '1023542976787',
+    projectId: 'react-noti-app-5c9f4',
+    storageBucket: 'react-noti-app-5c9f4.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDi8g1bKRLVfQAcjN05IhFjPzAn25UfMN8',
-    appId: '1:1074657064584:ios:dbf3bd3550ae281f41913d',
-    messagingSenderId: '1074657064584',
-    projectId: 'wayo-chat',
-    storageBucket: 'wayo-chat.appspot.com',
+    apiKey: 'AIzaSyAmiUxdz4ExDRoGoYT1kuZLgoEdPQ-evk8',
+    appId: '1:1023542976787:ios:a00ccfc16b744cb702fae6',
+    messagingSenderId: '1023542976787',
+    projectId: 'react-noti-app-5c9f4',
+    storageBucket: 'react-noti-app-5c9f4.appspot.com',
     iosBundleId: 'com.example.wayoChatapp',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAmiUxdz4ExDRoGoYT1kuZLgoEdPQ-evk8',
+    appId: '1:1023542976787:ios:357ae4f2a817bf9102fae6',
+    messagingSenderId: '1023542976787',
+    projectId: 'react-noti-app-5c9f4',
+    storageBucket: 'react-noti-app-5c9f4.appspot.com',
+    iosBundleId: 'com.example.wayoChatapp.RunnerTests',
   );
 }
