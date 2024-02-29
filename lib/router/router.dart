@@ -6,6 +6,11 @@ import 'package:wayo_chatapp/screens/admin/selection_admin.dart';
 import 'package:wayo_chatapp/screens/homescreen.dart';
 import 'package:wayo_chatapp/screens/rootscreen.dart';
 
+import '../screens/admin/user_admin.dart';
+import '../screens/chats.dart';
+import '../screens/gameinit.dart';
+import '../screens/registeruser.dart';
+
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(initialLocation: "/", routes: <RouteBase>[
     ShellRoute(
@@ -31,6 +36,30 @@ final routerProvider = Provider<GoRouter>((ref) {
       name: "RootScreen",
       builder: (BuildContext context, GoRouterState state) =>
           const RootScreen(),
-    )
+    ),
+    GoRoute(
+      path: "/admin/user",
+      name: "UserAdminScreen",
+      builder: (BuildContext context, GoRouterState state) =>
+          const UserAdminScreen(),
+    ),
+    GoRoute(
+      path: "/gameinit",
+      name: "GameInitScreen",
+      builder: (BuildContext context, GoRouterState state) =>
+          const GameInitScreen(),
+    ),
+    GoRoute(
+      path: "/registeruser",
+      name: "RegisterUserScreen",
+      builder: (BuildContext context, GoRouterState state) =>
+          const RegisterUserScreen(),
+    ),
+    GoRoute(
+      path: "/chats",
+      name: "ChatsScreen",
+      builder: (BuildContext context, GoRouterState state) =>
+          const ChatsScreen(),
+    ),
   ]);
 });

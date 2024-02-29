@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:logger/logger.dart';
+import 'package:wayo_chatapp/layouts/sidenav/navcontents.dart';
 import 'package:wayo_chatapp/platform/web/webroot.dart';
 import 'package:wayo_chatapp/providers/fcm/token_provider.dart';
 import 'package:wayo_chatapp/providers/isloading/isloading_provider.dart';
@@ -27,8 +28,9 @@ class RootScreen extends HookConsumerWidget {
         appBar: AppBar(
           centerTitle: true,
           title: const Text("Root"),
-          backgroundColor: Colors.teal,
+          backgroundColor: Colors.lime,
         ),
+        drawer: const NavContents(),
         body: Center(
           child: Column(
             children: [

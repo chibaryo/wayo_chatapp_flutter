@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../providers/firebase/auth/auth_provider.dart';
+
 class NavContents extends HookConsumerWidget {
   const NavContents({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(firebaseAuthProvider);
 
     return Drawer(
       child: ListView(
@@ -53,12 +56,33 @@ class NavContents extends HookConsumerWidget {
                 title: const Text("設定"),
                 onTap: () => print('Upload tapped'),
               ),
+              authState.currentUser?.uid != null
+              ?
               ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text("サインアウト"),
                 onTap: () async {
                   await FirebaseAuth.instance.signOut();
                 },
+              )
+              :
+              ListTile(
+                leading: const Icon(Icons.login),
+                title: const Text("サインイン"),
+                onTap: () async {
+//                  await FirebaseAuth.instance.si();
+                },
+              ),
+              const Divider(),
+              ListTile(
+                leading: const Icon(Icons.gamepad),
+                title: const Text("init"),
+                onTap: () => context.goNamed("GameInitScreen"),
+              ),
+              ListTile(
+                leading: const Icon(Icons.chat_bubble),
+                title: const Text("Chats"),
+                onTap: () => context.goNamed("ChatsScreen"),
               ),
             ],
           ),
