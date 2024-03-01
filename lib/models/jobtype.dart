@@ -19,8 +19,10 @@ class TimestampConverter implements JsonConverter<DateTime?, Timestamp?> {
 @freezed
 class JobType with _$JobType {
   const factory JobType({
+    @Default('') String id,
     @Default('') String job,
     @Default('') String label,
+    @Default('') String jobGenre,
     @TimestampConverter() DateTime? createdAt,
   }) = _JobType;
 
@@ -32,8 +34,10 @@ class JobType with _$JobType {
 
   // DartのオブジェクトからFirebaseへ渡す際の変換処理
   Map<String, dynamic> toJson() => {
+    'id': id,
     'job': job,
     'label': label,
+    'jobGenre': jobGenre,
     'createdAt': createdAt != null ? Timestamp.fromDate(createdAt!) : null,
   };
 }

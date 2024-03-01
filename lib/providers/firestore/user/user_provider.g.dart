@@ -40,7 +40,7 @@ final userStreamProvider =
 
 typedef UserStreamRef = AutoDisposeStreamProviderRef<List<FirebaseUser>>;
 String _$asyncFirebaseUserNotifierHash() =>
-    r'a2e85eedecff3afeee86dcd2a45fdc5c533e3178';
+    r'6f5377fab5390ed9f05ba1e59cee673d649f6907';
 
 /// See also [AsyncFirebaseUserNotifier].
 @ProviderFor(AsyncFirebaseUserNotifier)

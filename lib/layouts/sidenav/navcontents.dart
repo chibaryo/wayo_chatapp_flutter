@@ -50,6 +50,11 @@ class NavContents extends HookConsumerWidget {
                 title: const Text("タグ管理"),
                 onTap: () => context.goNamed("TagAdminScreen"),
               ),
+              ListTile(
+                leading: const Icon(Icons.work),
+                title: const Text("ジョブ管理"),
+                onTap: () => context.goNamed("JobAdminScreen"),
+              ),
               const Divider(),
               ListTile(
                 leading: const Icon(Icons.settings),
@@ -63,15 +68,14 @@ class NavContents extends HookConsumerWidget {
                 title: const Text("サインアウト"),
                 onTap: () async {
                   await FirebaseAuth.instance.signOut();
+                  context.goNamed("LoginScreen");
                 },
               )
               :
               ListTile(
                 leading: const Icon(Icons.login),
-                title: const Text("サインイン"),
-                onTap: () async {
-//                  await FirebaseAuth.instance.si();
-                },
+                title: const Text("ログイン"),
+                onTap: () => context.pushNamed("LoginScreen"),
               ),
               const Divider(),
               ListTile(

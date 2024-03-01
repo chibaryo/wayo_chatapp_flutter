@@ -6,9 +6,14 @@ import 'package:wayo_chatapp/screens/admin/selection_admin.dart';
 import 'package:wayo_chatapp/screens/homescreen.dart';
 import 'package:wayo_chatapp/screens/rootscreen.dart';
 
+import '../screens/admin/job_admin.dart';
 import '../screens/admin/user_admin.dart';
 import '../screens/chats.dart';
+import '../screens/cond_screen.dart';
 import '../screens/gameinit.dart';
+import '../screens/jobselection_screen.dart';
+import '../screens/loginscreen.dart';
+import '../screens/marriedselection_screen.dart';
 import '../screens/registeruser.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -44,6 +49,12 @@ final routerProvider = Provider<GoRouter>((ref) {
           const UserAdminScreen(),
     ),
     GoRoute(
+      path: "/admin/job",
+      name: "JobAdminScreen",
+      builder: (BuildContext context, GoRouterState state) =>
+          const JobAdminScreen(),
+    ),
+    GoRoute(
       path: "/gameinit",
       name: "GameInitScreen",
       builder: (BuildContext context, GoRouterState state) =>
@@ -60,6 +71,33 @@ final routerProvider = Provider<GoRouter>((ref) {
       name: "ChatsScreen",
       builder: (BuildContext context, GoRouterState state) =>
           const ChatsScreen(),
+    ),
+    GoRoute(
+      path: "/login",
+      name: "LoginScreen",
+      builder: (BuildContext context, GoRouterState state) =>
+          const LoginScreen(),
+    ),
+    //
+    GoRoute(
+      path: "/condition",
+      name: "CondScreen",
+      builder: (BuildContext context, GoRouterState state) =>
+          const CondScreen(),
+    ),
+    // MarriedSelection
+    GoRoute(
+      path: "/selection/married",
+      name: "MarriedSelection",
+      builder: (BuildContext context, GoRouterState state) =>
+          const MarriedSelection(),
+    ),
+    //JobSelection
+    GoRoute(
+      path: "/selection/job",
+      name: "JobSelection",
+      builder: (BuildContext context, GoRouterState state) =>
+          const JobSelection(),
     ),
   ]);
 });

@@ -26,6 +26,7 @@ mixin _$FirebaseUser {
   String get job => throw _privateConstructorUsedError;
   String get haveChildren => throw _privateConstructorUsedError;
   String get imagepath => throw _privateConstructorUsedError;
+  String get married_status => throw _privateConstructorUsedError;
   @TimestampConverter()
   DateTime? get lastActive => throw _privateConstructorUsedError;
   bool get isOnline => throw _privateConstructorUsedError;
@@ -51,6 +52,7 @@ abstract class $FirebaseUserCopyWith<$Res> {
       String job,
       String haveChildren,
       String imagepath,
+      String married_status,
       @TimestampConverter() DateTime? lastActive,
       bool isOnline,
       @TimestampConverter() DateTime? createdAt});
@@ -75,6 +77,7 @@ class _$FirebaseUserCopyWithImpl<$Res, $Val extends FirebaseUser>
     Object? job = null,
     Object? haveChildren = null,
     Object? imagepath = null,
+    Object? married_status = null,
     Object? lastActive = freezed,
     Object? isOnline = null,
     Object? createdAt = freezed,
@@ -103,6 +106,10 @@ class _$FirebaseUserCopyWithImpl<$Res, $Val extends FirebaseUser>
       imagepath: null == imagepath
           ? _value.imagepath
           : imagepath // ignore: cast_nullable_to_non_nullable
+              as String,
+      married_status: null == married_status
+          ? _value.married_status
+          : married_status // ignore: cast_nullable_to_non_nullable
               as String,
       lastActive: freezed == lastActive
           ? _value.lastActive
@@ -135,6 +142,7 @@ abstract class _$$FirebaseUserImplCopyWith<$Res>
       String job,
       String haveChildren,
       String imagepath,
+      String married_status,
       @TimestampConverter() DateTime? lastActive,
       bool isOnline,
       @TimestampConverter() DateTime? createdAt});
@@ -157,6 +165,7 @@ class __$$FirebaseUserImplCopyWithImpl<$Res>
     Object? job = null,
     Object? haveChildren = null,
     Object? imagepath = null,
+    Object? married_status = null,
     Object? lastActive = freezed,
     Object? isOnline = null,
     Object? createdAt = freezed,
@@ -186,6 +195,10 @@ class __$$FirebaseUserImplCopyWithImpl<$Res>
           ? _value.imagepath
           : imagepath // ignore: cast_nullable_to_non_nullable
               as String,
+      married_status: null == married_status
+          ? _value.married_status
+          : married_status // ignore: cast_nullable_to_non_nullable
+              as String,
       lastActive: freezed == lastActive
           ? _value.lastActive
           : lastActive // ignore: cast_nullable_to_non_nullable
@@ -212,6 +225,7 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
       this.job = '',
       this.haveChildren = '',
       this.imagepath = '',
+      this.married_status = '',
       @TimestampConverter() this.lastActive,
       this.isOnline = false,
       @TimestampConverter() this.createdAt});
@@ -238,6 +252,9 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
   @JsonKey()
   final String imagepath;
   @override
+  @JsonKey()
+  final String married_status;
+  @override
   @TimestampConverter()
   final DateTime? lastActive;
   @override
@@ -249,7 +266,7 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FirebaseUser(uid: $uid, name: $name, email: $email, job: $job, haveChildren: $haveChildren, imagepath: $imagepath, lastActive: $lastActive, isOnline: $isOnline, createdAt: $createdAt)';
+    return 'FirebaseUser(uid: $uid, name: $name, email: $email, job: $job, haveChildren: $haveChildren, imagepath: $imagepath, married_status: $married_status, lastActive: $lastActive, isOnline: $isOnline, createdAt: $createdAt)';
   }
 
   @override
@@ -263,6 +280,7 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
       ..add(DiagnosticsProperty('job', job))
       ..add(DiagnosticsProperty('haveChildren', haveChildren))
       ..add(DiagnosticsProperty('imagepath', imagepath))
+      ..add(DiagnosticsProperty('married_status', married_status))
       ..add(DiagnosticsProperty('lastActive', lastActive))
       ..add(DiagnosticsProperty('isOnline', isOnline))
       ..add(DiagnosticsProperty('createdAt', createdAt));
@@ -281,6 +299,8 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
                 other.haveChildren == haveChildren) &&
             (identical(other.imagepath, imagepath) ||
                 other.imagepath == imagepath) &&
+            (identical(other.married_status, married_status) ||
+                other.married_status == married_status) &&
             (identical(other.lastActive, lastActive) ||
                 other.lastActive == lastActive) &&
             (identical(other.isOnline, isOnline) ||
@@ -292,7 +312,7 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, uid, name, email, job,
-      haveChildren, imagepath, lastActive, isOnline, createdAt);
+      haveChildren, imagepath, married_status, lastActive, isOnline, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -316,6 +336,7 @@ abstract class _FirebaseUser implements FirebaseUser {
       final String job,
       final String haveChildren,
       final String imagepath,
+      final String married_status,
       @TimestampConverter() final DateTime? lastActive,
       final bool isOnline,
       @TimestampConverter() final DateTime? createdAt}) = _$FirebaseUserImpl;
@@ -335,6 +356,8 @@ abstract class _FirebaseUser implements FirebaseUser {
   String get haveChildren;
   @override
   String get imagepath;
+  @override
+  String get married_status;
   @override
   @TimestampConverter()
   DateTime? get lastActive;

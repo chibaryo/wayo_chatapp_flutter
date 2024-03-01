@@ -20,8 +20,10 @@ JobType _$JobTypeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$JobType {
+  String get id => throw _privateConstructorUsedError;
   String get job => throw _privateConstructorUsedError;
   String get label => throw _privateConstructorUsedError;
+  String get jobGenre => throw _privateConstructorUsedError;
   @TimestampConverter()
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
@@ -36,7 +38,11 @@ abstract class $JobTypeCopyWith<$Res> {
       _$JobTypeCopyWithImpl<$Res, JobType>;
   @useResult
   $Res call(
-      {String job, String label, @TimestampConverter() DateTime? createdAt});
+      {String id,
+      String job,
+      String label,
+      String jobGenre,
+      @TimestampConverter() DateTime? createdAt});
 }
 
 /// @nodoc
@@ -52,11 +58,17 @@ class _$JobTypeCopyWithImpl<$Res, $Val extends JobType>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? job = null,
     Object? label = null,
+    Object? jobGenre = null,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       job: null == job
           ? _value.job
           : job // ignore: cast_nullable_to_non_nullable
@@ -64,6 +76,10 @@ class _$JobTypeCopyWithImpl<$Res, $Val extends JobType>
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
+              as String,
+      jobGenre: null == jobGenre
+          ? _value.jobGenre
+          : jobGenre // ignore: cast_nullable_to_non_nullable
               as String,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -81,7 +97,11 @@ abstract class _$$JobTypeImplCopyWith<$Res> implements $JobTypeCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String job, String label, @TimestampConverter() DateTime? createdAt});
+      {String id,
+      String job,
+      String label,
+      String jobGenre,
+      @TimestampConverter() DateTime? createdAt});
 }
 
 /// @nodoc
@@ -95,11 +115,17 @@ class __$$JobTypeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? job = null,
     Object? label = null,
+    Object? jobGenre = null,
     Object? createdAt = freezed,
   }) {
     return _then(_$JobTypeImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       job: null == job
           ? _value.job
           : job // ignore: cast_nullable_to_non_nullable
@@ -107,6 +133,10 @@ class __$$JobTypeImplCopyWithImpl<$Res>
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
+              as String,
+      jobGenre: null == jobGenre
+          ? _value.jobGenre
+          : jobGenre // ignore: cast_nullable_to_non_nullable
               as String,
       createdAt: freezed == createdAt
           ? _value.createdAt
@@ -120,11 +150,18 @@ class __$$JobTypeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$JobTypeImpl with DiagnosticableTreeMixin implements _JobType {
   const _$JobTypeImpl(
-      {this.job = '', this.label = '', @TimestampConverter() this.createdAt});
+      {this.id = '',
+      this.job = '',
+      this.label = '',
+      this.jobGenre = '',
+      @TimestampConverter() this.createdAt});
 
   factory _$JobTypeImpl.fromJson(Map<String, dynamic> json) =>
       _$$JobTypeImplFromJson(json);
 
+  @override
+  @JsonKey()
+  final String id;
   @override
   @JsonKey()
   final String job;
@@ -132,12 +169,15 @@ class _$JobTypeImpl with DiagnosticableTreeMixin implements _JobType {
   @JsonKey()
   final String label;
   @override
+  @JsonKey()
+  final String jobGenre;
+  @override
   @TimestampConverter()
   final DateTime? createdAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'JobType(job: $job, label: $label, createdAt: $createdAt)';
+    return 'JobType(id: $id, job: $job, label: $label, jobGenre: $jobGenre, createdAt: $createdAt)';
   }
 
   @override
@@ -145,8 +185,10 @@ class _$JobTypeImpl with DiagnosticableTreeMixin implements _JobType {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'JobType'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('job', job))
       ..add(DiagnosticsProperty('label', label))
+      ..add(DiagnosticsProperty('jobGenre', jobGenre))
       ..add(DiagnosticsProperty('createdAt', createdAt));
   }
 
@@ -155,15 +197,19 @@ class _$JobTypeImpl with DiagnosticableTreeMixin implements _JobType {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$JobTypeImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.job, job) || other.job == job) &&
             (identical(other.label, label) || other.label == label) &&
+            (identical(other.jobGenre, jobGenre) ||
+                other.jobGenre == jobGenre) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, job, label, createdAt);
+  int get hashCode =>
+      Object.hash(runtimeType, id, job, label, jobGenre, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -181,16 +227,22 @@ class _$JobTypeImpl with DiagnosticableTreeMixin implements _JobType {
 
 abstract class _JobType implements JobType {
   const factory _JobType(
-      {final String job,
+      {final String id,
+      final String job,
       final String label,
+      final String jobGenre,
       @TimestampConverter() final DateTime? createdAt}) = _$JobTypeImpl;
 
   factory _JobType.fromJson(Map<String, dynamic> json) = _$JobTypeImpl.fromJson;
 
   @override
+  String get id;
+  @override
   String get job;
   @override
   String get label;
+  @override
+  String get jobGenre;
   @override
   @TimestampConverter()
   DateTime? get createdAt;
