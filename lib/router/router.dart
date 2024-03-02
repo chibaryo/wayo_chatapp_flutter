@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wayo_chatapp/layouts/commonbase.dart';
+import 'package:wayo_chatapp/providers/firestore/user/user_provider.dart';
 import 'package:wayo_chatapp/screens/admin/selection_admin.dart';
 import 'package:wayo_chatapp/screens/homescreen.dart';
 import 'package:wayo_chatapp/screens/rootscreen.dart';
@@ -15,6 +16,7 @@ import '../screens/jobselection_screen.dart';
 import '../screens/loginscreen.dart';
 import '../screens/marriedselection_screen.dart';
 import '../screens/registeruser.dart';
+import '../screens/talkscreen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(initialLocation: "/", routes: <RouteBase>[
@@ -77,6 +79,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       name: "LoginScreen",
       builder: (BuildContext context, GoRouterState state) =>
           const LoginScreen(),
+    ),
+    GoRoute(
+      path: "/talk/:uid",
+      name: "TalkScreen",
+      builder: (BuildContext context, GoRouterState state) {
+        return TalkScreen(uid: state.pathParameters["uid"]!);
+      }
     ),
     //
     GoRoute(

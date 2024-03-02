@@ -88,6 +88,11 @@ class NavContents extends HookConsumerWidget {
                 title: const Text("Chats"),
                 onTap: () => context.goNamed("ChatsScreen"),
               ),
+              ListTile(
+                leading: const Icon(Icons.message_outlined),
+                title: const Text("Talk"),
+                onTap: () => context.goNamed("TalkScreen"),
+              ),
             ],
           ),
     );

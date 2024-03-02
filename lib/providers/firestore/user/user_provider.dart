@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wayo_chatapp/models/user.dart';
+import 'package:wayo_chatapp/providers/firebase/auth/auth_provider.dart';
 
 part 'user_provider.g.dart';
 
@@ -38,6 +39,31 @@ Stream<List<FirebaseUser>> userStream(UserStreamRef ref) {
 }
 
 @riverpod
+Stream<List<FirebaseUser>> talkTargetUserStream(TalkTargetUserStreamRef ref, String uid) {
+  print("ref.watch(currentFirebaseUserIdNotifierProvider): ${ref.watch(currentFirebaseUserIdNotifierProvider)}");
+
+  final firestore = ref.watch(firebaseFirestoreProvider);
+  return firestore
+    .collection('users')
+    .where("uid", isEqualTo: uid)
+    .withConverter<FirebaseUser?>(fromFirestore:  (ds, _) {
+      final data = ds.data();
+      final id = ds.id;
+
+      if (data == null) {
+        return null;
+      }
+      data['id'] = id;
+      return FirebaseUser.fromJson(data);
+    }, toFirestore: (user, _) {
+      return user?.toJson() ?? {};
+    })
+    .snapshots()
+    .map((snapshot) =>
+      snapshot.docs.map((doc) => doc.data()).whereType<FirebaseUser>().toList());
+}
+
+@riverpod
 class AsyncFirebaseUserNotifier extends _$AsyncFirebaseUserNotifier {
   Future<List<FirebaseUser>> _fetchFirebaseUsers() async {
     final snapshots = await FirebaseFirestore.instance.collection('users').get();
@@ -49,6 +75,7 @@ class AsyncFirebaseUserNotifier extends _$AsyncFirebaseUserNotifier {
   FutureOr<List<FirebaseUser>> build() async {
     return _fetchFirebaseUsers();
   }
+
 
   // CREATE(Add)
   Future<void> addFirebaseUser({
@@ -103,4 +130,12 @@ class AsyncFirebaseUserNotifier extends _$AsyncFirebaseUserNotifier {
   }
 
 
+}
+
+@riverpod
+class CurrentFirebaseUserIdNotifier extends _$CurrentFirebaseUserIdNotifier {
+  @override
+  String build () {
+    return "";
+  }
 }

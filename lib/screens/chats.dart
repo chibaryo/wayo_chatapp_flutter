@@ -195,6 +195,10 @@ class ChatsScreen extends HookConsumerWidget {
                         const SizedBox(height: 10),
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) => ListTile(
+                      onTap: () async {
+//                        print("_jobFilteredUsers[index]: ${_jobFilteredUsers[index]}");
+                        context.pushNamed("TalkScreen", pathParameters: { "uid": _jobFilteredUsers[index].uid });
+                      },
                       contentPadding: EdgeInsets.zero,
                       leading: Stack(
                         alignment: Alignment.bottomRight,
@@ -244,36 +248,41 @@ class ChatsScreen extends HookConsumerWidget {
                         ),
                         itemCount: _jobFilteredUsers.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return ClipRRect(
-                            borderRadius: BorderRadius.circular(12.0),
-                            child: Stack(
-                              fit: StackFit.expand,
-                              children: [
-                                Image.network(
-                                  _jobFilteredUsers[index].imagepath,
-                                  fit: BoxFit.cover,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 28.0, bottom: 3.0),
-                                  child: Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: Text(
-                                      _jobFilteredUsers[index].name,
-                                      style: TextStyle(fontSize: 24, color: Colors.white),
+                          return GestureDetector(
+                            onTap: () async {
+                              context.pushNamed("TalkScreen", pathParameters: { "uid": _jobFilteredUsers[index].uid });
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12.0),
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Image.network(
+                                    _jobFilteredUsers[index].imagepath,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 28.0, bottom: 3.0),
+                                    child: Align(
+                                      alignment: Alignment.bottomLeft,
+                                      child: Text(
+                                        _jobFilteredUsers[index].name,
+                                        style: TextStyle(fontSize: 24, color: Colors.white),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Positioned(
-                                  bottom: 14,
-                                  left: 8,
-                                  child: CircleAvatar(
-                                    backgroundColor: _jobFilteredUsers[index].isOnline
-                                      ? Colors.green
-                                      : Colors.grey,
-                                    radius: 6,
+                                  Positioned(
+                                    bottom: 14,
+                                    left: 8,
+                                    child: CircleAvatar(
+                                      backgroundColor: _jobFilteredUsers[index].isOnline
+                                        ? Colors.green
+                                        : Colors.grey,
+                                      radius: 6,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           );
                         }

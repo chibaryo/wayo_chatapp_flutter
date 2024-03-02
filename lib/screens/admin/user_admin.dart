@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:excel/excel.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_admin/firebase_admin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -85,6 +86,16 @@ class UserAdminScreen extends HookConsumerWidget {
                   openDialog();
                 },
                 child: const Text("ユーザ追加")),
+          ),
+          ElevatedButton(
+                onPressed: () async {
+                  try {
+                    await FirebaseAuth.instance.currentUser?.updateDisplayName("笹岡ゆうこ");
+                  } catch (err) {
+                    throw Exception(err);
+                  }
+                },
+                child: const Text("photoURL")
           ),
         ],
       )),
