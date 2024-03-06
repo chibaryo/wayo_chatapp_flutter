@@ -123,7 +123,7 @@ class CondScreen extends HookConsumerWidget {
                   context.pushNamed(_tileItems[index]["link"]);
                 },
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Expanded(
                       flex: 1,
@@ -136,14 +136,20 @@ class CondScreen extends HookConsumerWidget {
                       ),
                     ),
                     // *** Attention ! overflow ***
-                    Text(
-                      _tileItems[index]["value"],
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w300
+                    Flexible(
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width / 3,
+                        child: Text(
+                          _tileItems[index]["value"],
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300
+                          ),
+                          overflow: TextOverflow.clip,
+                          softWrap: true,
+                      //                        maxLines: 3,
+                        ),
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 4,
                     ),
                     // *** Attention ! overflow ***
                   ],
