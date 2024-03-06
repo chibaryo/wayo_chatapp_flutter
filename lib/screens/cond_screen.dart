@@ -123,9 +123,29 @@ class CondScreen extends HookConsumerWidget {
                   context.pushNamed(_tileItems[index]["link"]);
                 },
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(_tileItems[index]["label"], style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
-                    Text(_tileItems[index]["value"], style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300)),
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                        _tileItems[index]["label"],
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700
+                        ),
+                      ),
+                    ),
+                    // *** Attention ! overflow ***
+                    Text(
+                      _tileItems[index]["value"],
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w300
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 4,
+                    ),
+                    // *** Attention ! overflow ***
                   ],
                 ),
               ),
