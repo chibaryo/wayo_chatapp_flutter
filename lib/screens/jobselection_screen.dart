@@ -86,7 +86,9 @@ class JobSelection extends HookConsumerWidget {
                         backgroundColor: Colors.grey,
                         foregroundColor: Colors.white,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        context.pop();
+                      },
                       child: const Text("キャンセル")),
                 ),
                 const SizedBox(

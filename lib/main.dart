@@ -11,13 +11,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:wayo_chatapp/firebase_options.dart';
 import 'package:wayo_chatapp/providers/fcm/token_provider.dart';
 import 'package:wayo_chatapp/router/router.dart';
-
+import 'package:timeago/timeago.dart' as timeago;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  timeago.setLocaleMessages("ja", timeago.JaMessages());
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -28,6 +29,7 @@ class MyApp extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     useEffect(() {
     }, const []);
+
 
     final router = ref.watch(routerProvider);
     return MaterialApp.router(

@@ -60,7 +60,9 @@ class MarriedSelection extends HookConsumerWidget {
               label: Text(e.title),
               onSelected: (selected) {
                 if (selected) {
-                  ref.read(condSelectionIsMarriedNotifierProvider.notifier).addSelection(e.title);
+                  if (!ref.watch(condSelectionIsMarriedNotifierProvider).contains(e.title)) {
+                    ref.read(condSelectionIsMarriedNotifierProvider.notifier).addSelection(e.title);
+                  }
                 } else {
                   ref.read(condSelectionIsMarriedNotifierProvider.notifier).removeSelection(e.title);
                 }
@@ -80,7 +82,9 @@ class MarriedSelection extends HookConsumerWidget {
                   backgroundColor: Colors.grey,
                   foregroundColor: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  context.pop();
+                },
                 child: const Text("キャンセル")
               ),
             ),

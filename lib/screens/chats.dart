@@ -196,6 +196,8 @@ class ChatsScreen extends HookConsumerWidget {
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) => ListTile(
                       onTap: () async {
+                        debugPrint("Goto talk");
+                        debugPrint("_jobFilteredUsers: ${_jobFilteredUsers.toString()}");
 //                        print("_jobFilteredUsers[index]: ${_jobFilteredUsers[index]}");
                         context.pushNamed("TalkScreen", pathParameters: { "uid": _jobFilteredUsers[index].uid });
                       },
@@ -250,6 +252,9 @@ class ChatsScreen extends HookConsumerWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return GestureDetector(
                             onTap: () async {
+                              debugPrint("Goto talk");
+                              debugPrint("index: ${index}");
+                              debugPrint("_jobFilteredUsers: ${_jobFilteredUsers[index].uid.toString()}");
                               context.pushNamed("TalkScreen", pathParameters: { "uid": _jobFilteredUsers[index].uid });
                             },
                             child: ClipRRect(

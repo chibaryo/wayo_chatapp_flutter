@@ -137,7 +137,7 @@ class CondScreen extends HookConsumerWidget {
             ),
           ),
       Container(
-        padding: const EdgeInsets.symmetric(horizontal: 32.0),
+        padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
         width: double.infinity,
         child: Row(
           children: <Widget>[
@@ -147,7 +147,9 @@ class CondScreen extends HookConsumerWidget {
                   backgroundColor: Colors.grey,
                   foregroundColor: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  context.pop();
+                },
                 child: const Text("キャンセル")
               ),
             ),

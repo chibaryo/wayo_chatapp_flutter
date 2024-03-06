@@ -5,6 +5,7 @@ import 'package:wayo_chatapp/layouts/commonbase.dart';
 import 'package:wayo_chatapp/providers/firestore/user/user_provider.dart';
 import 'package:wayo_chatapp/screens/admin/selection_admin.dart';
 import 'package:wayo_chatapp/screens/homescreen.dart';
+import 'package:wayo_chatapp/screens/imagedetailscreen.dart';
 import 'package:wayo_chatapp/screens/rootscreen.dart';
 
 import '../screens/admin/job_admin.dart';
@@ -85,7 +86,19 @@ final routerProvider = Provider<GoRouter>((ref) {
       name: "TalkScreen",
       builder: (BuildContext context, GoRouterState state) {
         return TalkScreen(uid: state.pathParameters["uid"]!);
-      }
+      },
+      routes: [
+        GoRoute(
+          path: "imagedetail/:imagepath",
+          name: "ImageDetailScreen",
+          builder: (BuildContext context, GoRouterState state) {
+            return ImageDetailScreen(
+              uid: state.pathParameters["uid"]!,
+              imagepath: state.pathParameters["imagepath"]!
+            );
+          }
+        ),
+      ]
     ),
     //
     GoRoute(

@@ -76,7 +76,6 @@ class AsyncFirebaseUserNotifier extends _$AsyncFirebaseUserNotifier {
     return _fetchFirebaseUsers();
   }
 
-
   // CREATE(Add)
   Future<void> addFirebaseUser({
     required String name,
