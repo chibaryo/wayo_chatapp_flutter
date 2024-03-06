@@ -113,64 +113,92 @@ class CondScreen extends HookConsumerWidget {
         ],
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              itemCount: _tileItems.length,
-              itemBuilder:  (context, index) => ListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
-                title: Text(_tileItems[index]["label"], style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
+        children: [
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: _tileItems.length,
+            itemBuilder:  (context, index) =>
+              GestureDetector(
                 onTap: () {
-                  context.pushNamed(_tileItems[index]["link"]);
                 },
-                trailing: 
-                  Wrap(
-                    spacing: 8.0,
-                    direction: Axis.horizontal,
-                    children: <Widget>[
-                      Text(_tileItems[index]["value"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300)),
-                      const Icon(Icons.keyboard_arrow_right_sharp),
-                    ],
+                child: const Row(
+                  children: <Widget>[
+                    Text("Foo!"),
+                  ],
+                ),
+              ),
+            ),
+            // Button Area
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+              width: double.infinity,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey,
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: () {
+                        context.pop();
+                      },
+                      child: const Text("キャンセル")
+                    ),
                   ),
+                  const SizedBox(width: 32,),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.brown.shade500,
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: () {
+                        context.goNamed("ChatsScreen");
+                      },
+                      child: const Text("決定する")
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-      Container(
-        padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-        width: double.infinity,
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
-                  foregroundColor: Colors.white,
-                ),
-                onPressed: () {
-                  context.pop();
-                },
-                child: const Text("キャンセル")
-              ),
-            ),
-            const SizedBox(width: 32,),
-            Expanded(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.brown.shade500,
-                  foregroundColor: Colors.white,
-                ),
-                onPressed: () {
-                  context.goNamed("ChatsScreen");
-                },
-                child: const Text("決定する")
-              ),
-            ),
-          ],
-        ),
-      ),
+            // End Button Area
         ],
-      )
+      ),
+      /*          ListView.builder(
+        itemCount: _tileItems.length,
+        itemBuilder:  (context, index) =>
+         GestureDetector(
+          onTap: () {
+      
+          },
+          child: Row(
+            children: [
+              Expanded(
+                child: Text("Foo"), //Text(_tileItems[index]["label"], style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
+              ),
+      /*                  Expanded(
+                child: Text(_tileItems[index]["value"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300)),
+              ), */
+            ],
+          ),
+        )
+      /*              child
+          Container(Text(_tileItems[index]["label"], style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
+          onTap: () {
+            context.pushNamed(_tileItems[index]["link"]);
+          },
+          trailing: 
+            Wrap(
+              spacing: 8.0,
+              direction: Axis.horizontal,
+              children: <Widget>[
+                Text(_tileItems[index]["value"], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300)),
+                const Icon(Icons.keyboard_arrow_right_sharp),
+              ],
+            ),
+        ), */
+      ),*/
     );
   }
 }
