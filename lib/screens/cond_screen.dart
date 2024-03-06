@@ -120,10 +120,12 @@ class CondScreen extends HookConsumerWidget {
             itemBuilder:  (context, index) =>
               GestureDetector(
                 onTap: () {
+                  context.pushNamed(_tileItems[index]["link"]);
                 },
-                child: const Row(
+                child: Row(
                   children: <Widget>[
-                    Text("Foo!"),
+                    Text(_tileItems[index]["label"], style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),),
+                    Text(_tileItems[index]["value"], style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300)),
                   ],
                 ),
               ),
