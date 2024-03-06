@@ -138,11 +138,11 @@ class CondScreen extends HookConsumerWidget {
                     // *** Attention ! overflow ***
                     Flexible(
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width / 3,
+                        width: MediaQuery.of(context).size.width / 2,
                         child: Text(
                           _tileItems[index]["value"],
                           style: const TextStyle(
-                            fontSize: 12,
+                            fontSize: 14,
                             fontWeight: FontWeight.w300
                           ),
                           overflow: TextOverflow.clip,
