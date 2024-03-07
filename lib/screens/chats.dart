@@ -160,7 +160,7 @@ class ChatsScreen extends HookConsumerWidget {
                         child: _selectedJob.isNotEmpty || _selectedMarriedStatus.isNotEmpty
                         ? const Text("絞り込み中", style: TextStyle(color: Colors.brown),)
                         : const Text("絞り込み設定", style: TextStyle(color: Colors.brown),),
-                      )
+                      ),
                     ],
                   ),
                 ),

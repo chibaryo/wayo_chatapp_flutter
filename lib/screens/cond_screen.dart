@@ -114,48 +114,55 @@ class CondScreen extends HookConsumerWidget {
       ),
       body: Column(
         children: [
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: _tileItems.length,
-            itemBuilder:  (context, index) =>
-              GestureDetector(
-                onTap: () {
-                  context.pushNamed(_tileItems[index]["link"]);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        _tileItems[index]["label"],
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700
-                        ),
-                      ),
-                    ),
-                    // *** Attention ! overflow ***
-                    Flexible(
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width / 2,
-                        child: Text(
-                          _tileItems[index]["value"],
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w300
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: _tileItems.length,
+              itemBuilder:  (context, index) =>
+                GestureDetector(
+                  onTap: () {
+                    context.pushNamed(_tileItems[index]["link"]);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            _tileItems[index]["label"],
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700
+                            ),
                           ),
-                          overflow: TextOverflow.clip,
-                          softWrap: true,
-                      //                        maxLines: 3,
                         ),
-                      ),
+                        // *** Attention ! overflow ***
+                        Flexible(
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              _tileItems[index]["value"],
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w300
+                              ),
+                              overflow: TextOverflow.clip,
+                              softWrap: true,
+                            ),
+                          ),
+                        ),
+                        // *** Attention ! overflow ***
+                        Container(
+                          child: const Icon(Icons.keyboard_arrow_right_sharp),
+                        ),
+                      ],
                     ),
-                    // *** Attention ! overflow ***
-                  ],
+                  ),
                 ),
               ),
-            ),
+          ),
             // Button Area
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
