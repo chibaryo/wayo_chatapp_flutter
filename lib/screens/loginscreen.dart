@@ -11,6 +11,8 @@ import '../providers/firebase/auth/auth_provider.dart';
 import '../providers/firestore/user/selectedjob_provider.dart';
 import '../providers/firestore/user/user_provider.dart';
 import '../providers/form/formparts_provider.dart';
+//
+import '../repository/firebaseauth/authrepo.dart';
 
 class LoginScreen extends HookConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -26,6 +28,11 @@ class LoginScreen extends HookConsumerWidget {
 
     final _selectedJob = ref.watch(selectedJobNotifierProvider);
     final _selectedMarriedStatus = ref.watch(condSelectionIsMarriedNotifierProvider);
+
+    // Auth repo
+    Auth auth = Auth();
+    final authResult = useState("");
+
     final authState = ref.watch(firebaseAuthProvider);
 
       // Get initial preferred jobs
@@ -96,39 +103,65 @@ class LoginScreen extends HookConsumerWidget {
                         text;
                   },
                 ),
+                authResult.value != ""
+                ?
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(authResult.value, style: const TextStyle(color: Colors.red),),
+                    ]
+                  ),
+                )
+                : Container(),
                 Container(
                   child: ElevatedButton(
                     child: const Text("ログイン"),
-                    onPressed: () async {
-                      final serverDate = DateTime.now();
+                    onPressed: () {
                       final jobNotifier = ref.read(selectedJobNotifierProvider.notifier);
                       final marriedNotifier = ref.read(condSelectionIsMarriedNotifierProvider.notifier);
 
                       try {
-                        await FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
-                            email: _email,
-                            password: _password,
-                          );
+                        auth.signIn(_email, _password).then((result) {
+                          debugPrint("result: ${result.toString()}");
+                          if (result == "err:malformed_credential") {
+                            authResult.value = "メールアドレスまたはパスワードが違います";
+                          }
+                          if (result == "err:credential") {
+                            authResult.value = "メールアドレスまたはパスワードが違います";
+                          }
+                          if (result == "err:email") {
+                            authResult.value = "メールアドレスの書式が違います";
+                          }
+                          if (result == authState.currentUser?.uid) {
+                            // Show snackbar
+                            const snackBar = SnackBar(
+                              content: Text("ログイン成功")
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-                        // Set preset filters
-                        _getPreferredJobs().then((value) {
-                          print("value: $value");
-                          for (var e in value) {
-                            print("e:  $e");
-                            jobNotifier.addJob(e);
+
+                            // Set preset filters
+                            _getPreferredJobs().then((value) {
+                              print("value: $value");
+                              for (var e in value) {
+                                print("e:  $e");
+                                jobNotifier.addJob(e);
+                              }
+                            });
+
+                            _getPreferredMarriedStatus().then((value) {
+                              print("value: $value");
+                              for (var e in value) {
+                                marriedNotifier.addSelection(e);
+                              }
+                            });
+
+                            // Goto chatpage
+                            context.goNamed("ChatsScreen");
                           }
                         });
-
-                        _getPreferredMarriedStatus().then((value) {
-                          print("value: $value");
-                          for (var e in value) {
-                            marriedNotifier.addSelection(e);
-                          }
-                        });
-                        
-                        // Goto chatpage
-                        context.goNamed("ChatsScreen");
                       } catch (err) {
                         throw Exception(err);
                       }

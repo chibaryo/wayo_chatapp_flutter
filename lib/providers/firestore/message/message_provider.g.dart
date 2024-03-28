@@ -192,7 +192,7 @@ class _ConversationStreamProviderElement
 }
 
 String _$asyncMessageNotifierHash() =>
-    r'60e066446622b0f151fb16c5c2c58f153e72ae6b';
+    r'6ab196c94e335606cb253288208ef89ebd37eea1';
 
 /// See also [AsyncMessageNotifier].
 @ProviderFor(AsyncMessageNotifier)

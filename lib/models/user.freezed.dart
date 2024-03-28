@@ -23,6 +23,7 @@ mixin _$FirebaseUser {
   String get uid => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   String get job => throw _privateConstructorUsedError;
   String get haveChildren => throw _privateConstructorUsedError;
   String get imagepath => throw _privateConstructorUsedError;
@@ -49,6 +50,7 @@ abstract class $FirebaseUserCopyWith<$Res> {
       {String uid,
       String name,
       String email,
+      String password,
       String job,
       String haveChildren,
       String imagepath,
@@ -74,6 +76,7 @@ class _$FirebaseUserCopyWithImpl<$Res, $Val extends FirebaseUser>
     Object? uid = null,
     Object? name = null,
     Object? email = null,
+    Object? password = null,
     Object? job = null,
     Object? haveChildren = null,
     Object? imagepath = null,
@@ -94,6 +97,10 @@ class _$FirebaseUserCopyWithImpl<$Res, $Val extends FirebaseUser>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as String,
       job: null == job
           ? _value.job
@@ -139,6 +146,7 @@ abstract class _$$FirebaseUserImplCopyWith<$Res>
       {String uid,
       String name,
       String email,
+      String password,
       String job,
       String haveChildren,
       String imagepath,
@@ -162,6 +170,7 @@ class __$$FirebaseUserImplCopyWithImpl<$Res>
     Object? uid = null,
     Object? name = null,
     Object? email = null,
+    Object? password = null,
     Object? job = null,
     Object? haveChildren = null,
     Object? imagepath = null,
@@ -182,6 +191,10 @@ class __$$FirebaseUserImplCopyWithImpl<$Res>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as String,
       job: null == job
           ? _value.job
@@ -222,6 +235,7 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
       {this.uid = '',
       this.name = '',
       this.email = '',
+      this.password = '',
       this.job = '',
       this.haveChildren = '',
       this.imagepath = '',
@@ -242,6 +256,9 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
   @override
   @JsonKey()
   final String email;
+  @override
+  @JsonKey()
+  final String password;
   @override
   @JsonKey()
   final String job;
@@ -266,7 +283,7 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FirebaseUser(uid: $uid, name: $name, email: $email, job: $job, haveChildren: $haveChildren, imagepath: $imagepath, married_status: $married_status, lastActive: $lastActive, isOnline: $isOnline, createdAt: $createdAt)';
+    return 'FirebaseUser(uid: $uid, name: $name, email: $email, password: $password, job: $job, haveChildren: $haveChildren, imagepath: $imagepath, married_status: $married_status, lastActive: $lastActive, isOnline: $isOnline, createdAt: $createdAt)';
   }
 
   @override
@@ -277,6 +294,7 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
       ..add(DiagnosticsProperty('uid', uid))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('password', password))
       ..add(DiagnosticsProperty('job', job))
       ..add(DiagnosticsProperty('haveChildren', haveChildren))
       ..add(DiagnosticsProperty('imagepath', imagepath))
@@ -294,6 +312,8 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
             (identical(other.job, job) || other.job == job) &&
             (identical(other.haveChildren, haveChildren) ||
                 other.haveChildren == haveChildren) &&
@@ -311,7 +331,7 @@ class _$FirebaseUserImpl with DiagnosticableTreeMixin implements _FirebaseUser {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, name, email, job,
+  int get hashCode => Object.hash(runtimeType, uid, name, email, password, job,
       haveChildren, imagepath, married_status, lastActive, isOnline, createdAt);
 
   @JsonKey(ignore: true)
@@ -333,6 +353,7 @@ abstract class _FirebaseUser implements FirebaseUser {
       {final String uid,
       final String name,
       final String email,
+      final String password,
       final String job,
       final String haveChildren,
       final String imagepath,
@@ -350,6 +371,8 @@ abstract class _FirebaseUser implements FirebaseUser {
   String get name;
   @override
   String get email;
+  @override
+  String get password;
   @override
   String get job;
   @override

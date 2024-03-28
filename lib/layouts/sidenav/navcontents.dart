@@ -43,12 +43,7 @@ class NavContents extends HookConsumerWidget {
               ListTile(
                 leading: const Icon(Icons.person_2),
                 title: const Text("ユーザ管理"),
-                onTap: () => context.goNamed("UserAdminScreen"),
-              ),
-              ListTile(
-                leading: const Icon(Icons.tag),
-                title: const Text("タグ管理"),
-                onTap: () => context.goNamed("TagAdminScreen"),
+                onTap: () => context.pushNamed("UserAdminScreen"),
               ),
               ListTile(
                 leading: const Icon(Icons.work),

@@ -22,11 +22,11 @@ import 'package:wayo_chatapp/providers/firestore/selection/parentdocid_provider.
 import 'package:wayo_chatapp/providers/firestore/user/selectedjob_provider.dart';
 
 import '../../layouts/sidenav/navcontents.dart';
-import '../../models/selection.dart';
-import '../../providers/dropdown/dropdownchildselection_provider.dart';
-import '../../providers/firebase/admin/firebaseadmin_provider.dart'
-    as adminProvider;
-import '../../providers/firestore/selection/selection_provider.dart';
+//import '../../models/selection.dart';
+//import '../../providers/dropdown/dropdownchildselection_provider.dart';
+//import '../../providers/firebase/admin/firebaseadmin_provider.dart'
+//    as adminProvider;
+//import '../../providers/firestore/selection/selection_provider.dart';
 import '../providers/cond_selections/cond_selections_provider.dart';
 import '../providers/firebase/auth/auth_provider.dart';
 import '../providers/firestore/job/job_provider.dart';
@@ -174,10 +174,13 @@ class ChatsScreen extends HookConsumerWidget {
                 data: (userData) {
                   final _jobFilteredUsers =
                       userData.where((user) {
+                        debugPrint("user: ${user.uid.toString()}");
                         return
                           (_selectedJob.isEmpty || _selectedJob.contains(user.job))
                           &&
                           (_selectedMarriedStatus.isEmpty || _selectedMarriedStatus.contains(user.married_status))
+                          &&
+                          (user.uid != authState.currentUser!.uid)
                         ;
                   }).toList();
                   final _marriedFilteredUsers = userData.where((user) {
